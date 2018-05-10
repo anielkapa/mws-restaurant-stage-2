@@ -1,0 +1,129 @@
+const asyncRequestObject = new XMLHttpRequest();
+asyncRequestObject.open('GET', 'https://unsplash.com');
+
+/**Warning: For security reasons, you can only make requests for assets and data on the same domain as the site that will end up loading the data.
+ For example, to asynchronously request data from google.com your browser needs to be on google.com. This is known as the same-origin policy.
+The XHR's .open() method does not actually send the request! It sets the stage and gives the object the info it will need when the request is
+actually sent.**/
+
+const myAsyncRequest = new XMLHttpRequest();
+myAsyncRequest.open('GET', 'https://udacity.com/', false);
+
+/**Passing false as the third option makes the XHR request become a synchronous one. This will cause the JavaScript engine to pause and wait until
+the request is returned before continuing - this "pause and wait" is also called "blocking". This is a terrible idea and completely defeats the
+purpose for having an asynchronous behavior. Make sure you never set your XHR objects this way! Instead, either pass true as the 3rd argument or
+leave it blank (which makes it default to true).'**/
+
+
+
+FINAL VERSION
+function handleSuccess () {
+// in the function, the `this` value is the XHR object
+// this.responseText holds the response from the server
+
+console.log( this.responseText ); // the HTML of https://unsplash.com/
+const data = JSON.parse( this.responseText ); // convert data from JSON to a JavaScript object
+console.log( data );
+}
+// the HTML of https://unsplash.com/}
+function handleError () {
+// in the function, the `this` value is the XHR object
+console.log( 'An error occurred 😞' );
+}
+const asyncRequestObject = new XMLHttpRequest();
+asyncRequestObject.open('GET', 'https://unsplash.com');
+asyncRequestObject.onload = handleSuccess;
+asyncRequestObject.onerror = handleError;
+asyncRequestObject.send();
+
+
+
+//// AJAX - jquery
+function handleResponse(data) {
+    console.log('the ajax request has finished!');
+    console.log(data);
+}
+$.ajax({
+    url: 'https://swapi.co/api/people/1/'
+}).done(handleResponse);
+
+
+headers for authorisation
+function handleResponse(data) {
+    console.log('the ajax request has finished!');
+    console.log(data);
+}
+
+
+
+///fetch
+fetch(`https://api.unsplash.com/search/photos?page=1&query=${searchedForText}`, {
+    method: 'POST'
+});
+
+
+postData('http://example.com/answer', {answer: 42})
+  .then(data => console.log(data)) // JSON from `response.json()` call
+  .catch(error => console.error(error))
+
+function postData(url, data) {
+  // Default options are marked with *
+  return fetch(url, {
+    body: JSON.stringify(data), // must match 'Content-Type' header
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, same-origin, *omit
+    headers: {
+      'user-agent': 'Mozilla/4.0 MDN Example',
+      'content-type': 'application/json'
+    },
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, cors, *same-origin
+    redirect: 'follow', // manual, *follow, error
+    referrer: 'no-referrer', // *client, no-referrer
+  })
+  .then(response => response.json()) // parses response to JSON
+}
+*****
+fetch(`https://api.unsplash.com/search/photos?page=1&query=${searchedForText}`, {
+    headers: {
+        Authorization: 'Client-ID abc123'
+    }
+}).then(response => response.json())
+.then(addImage)
+.catch(e => requestError(e, 'image'));
+
+function addImage(data) {
+    debugger;
+}
+function requestError(e, part) {
+    console.log(e);
+    responseContainer.insertAdjacentHTML('beforeend', `<p class="network-warning">Oh no! There was an error making a request for the ${part}.</p>`);
+}
+
+ARRAY function
+fetch(`https://api.unsplash.com/search/photos?page=1&query=${searchedForText}`, {
+    headers: {
+        Authorization: 'Client-ID abc123'
+    }
+}).then(response => response.json())
+.then(addImage);
+
+function addImage(data) {
+    debugger;
+}
+
+ DISPLAY addImagefunction addImage(data) {
+    let htmlContent = '';
+    const firstImage = data.results[0];
+
+    if (firstImage) {
+        htmlContent = `<figure>
+            <img src="${firstImage.urls.small}" alt="${searchedForText}">
+            <figcaption>${searchedForText} by ${firstImage.user.name}</figcaption>
+        </figure>`;
+    } else {
+        htmlContent = 'Unfortunately, no image was returned for your search.'
+    }
+
+    responseContainer.insertAdjacentHTML('afterbegin', htmlContent);
+}
