@@ -3,11 +3,11 @@ var mapCache ='restaurants-google-maps-content';
 var filesToCache = [
   '/',
   '/js/dbhelper.js',
-  '/js/main.js',
-  '/js/restaurant_info.js',
+  '/js/bundle.min.js',
+  '/js/dbpromise.js',
   '/js/IndexController.js',
   '/data/restaurants.json',
-  '/css/styles.css',
+  '/css/bundle.min.css',
   '/index.html',
   '/restaurant.html',
   '/img/1.jpg',
@@ -29,7 +29,9 @@ var filesToCache = [
   '/images/7-400_small.jpg',
   '/images/8-400_small.jpg',
   '/images/9-400_small.jpg',
-  '/images/10-400_small.jpg'
+  '/images/10-400_small.jpg',
+  '/images/icons/icon-192x192.png',
+  '/images/icons/icon-512x512.png'
 ];
 
 self.addEventListener('install', function(e) {
