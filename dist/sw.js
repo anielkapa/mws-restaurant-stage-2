@@ -1,13 +1,14 @@
-var cacheName = 'restaurant-static-1';
+var cacheName = 'restaurant-static-2';
 var mapCache ='restaurants-google-maps-content';
 var filesToCache = [
   '/',
   '/js/dbhelper.js',
-  '/js/bundle.min.js',
   '/js/dbpromise.js',
+  '/js/main.js',
+  '/js/restaurant_info.js',
   '/js/IndexController.js',
   '/data/restaurants.json',
-  '/css/bundle.min.css',
+  '/css/styles.css',
   '/index.html',
   '/restaurant.html',
   '/img/1.jpg',
